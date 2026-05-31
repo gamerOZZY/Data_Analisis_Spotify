@@ -1,0 +1,55 @@
+---
+config:
+  layout: elk
+---
+classDiagram
+direction LR
+    class Artista {
+	    +String id
+	    +String nombre
+	    +obtenerAlbumes()
+	    +obtenerCanciones()
+    }
+
+    class Album {
+	    +String id
+	    +String nombre
+	    +Date fechaLanzamiento
+	    +obtenerCanciones()
+	    +duracionTotal()
+    }
+
+    class Cancion {
+	    +String id
+	    +String titulo
+	    +int duracionMs
+	    +float popularidad
+	    +obtenerArtista()
+	    +obtenerAlbum()
+    }
+
+    class Prediccion {
+	    +entrenarModelo()
+	    +predecir()
+	    +evaluarModelo()
+    }
+
+    class Graficas {
+	    +generarGrafica()
+	    +mostrarGrafica()
+	    +exportarGrafica()
+    }
+
+	<<abstract>> Prediccion
+	<<abstract>> Graficas
+
+    Artista "1" --> "*" Album : crea
+    Album "1" --> "*" Cancion : contiene
+    Artista "*" --> "*" Cancion : interpreta
+    Prediccion ..> Cancion : analiza
+    Prediccion ..> Album : utiliza datos
+    Prediccion ..> Artista : utiliza datos
+    Graficas ..> Cancion : visualiza
+    Graficas ..> Album : visualiza
+    Graficas ..> Artista : visualiza
+    Graficas ..> Prediccion : muestra resultados
