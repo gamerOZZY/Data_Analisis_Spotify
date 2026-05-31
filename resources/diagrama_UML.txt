@@ -1,55 +1,80 @@
+```mermaid
 ---
 config:
   layout: elk
 ---
 classDiagram
-direction LR
-    class Artista {
-	    +String id
-	    +String nombre
-	    +obtenerAlbumes()
-	    +obtenerCanciones()
-    }
 
-    class Album {
-	    +String id
-	    +String nombre
-	    +Date fechaLanzamiento
-	    +obtenerCanciones()
-	    +duracionTotal()
-    }
+class Artista {
+    artist_uri: str
+    artist_popularity: int
+    artist_genres: list<st>
+    artist_followers: int
 
-    class Cancion {
-	    +String id
-	    +String titulo
-	    +int duracionMs
-	    +float popularidad
-	    +obtenerArtista()
-	    +obtenerAlbum()
-    }
+}
 
-    class Prediccion {
-	    +entrenarModelo()
-	    +predecir()
-	    +evaluarModelo()
-    }
+class Cancion {
+    track_uri: str
+    name: str
+    album_type: str
+    is_playable: bool
+    release_date: date
 
-    class Graficas {
-	    +generarGrafica()
-	    +mostrarGrafica()
-	    +exportarGrafica()
-    }
+    artists_uris: list<string>
+    artists_names: list<artista>
+    artists_popularities: list<int>
+    artists_genres: list<list<string>>
+    artists_followers: list<int>
 
-	<<abstract>> Prediccion
-	<<abstract>> Graficas
+    playlist_uris: list<str>
 
-    Artista "1" --> "*" Album : crea
-    Album "1" --> "*" Cancion : contiene
-    Artista "*" --> "*" Cancion : interpreta
-    Prediccion ..> Cancion : analiza
-    Prediccion ..> Album : utiliza datos
-    Prediccion ..> Artista : utiliza datos
-    Graficas ..> Cancion : visualiza
-    Graficas ..> Album : visualiza
-    Graficas ..> Artista : visualiza
-    Graficas ..> Prediccion : muestra resultados
+    popularity: int
+    danceability: float
+    energy: float
+    key: int
+    loudness: float
+    mode: int
+    speechiness: float
+    acousticness: float
+    instrumentalness: float
+    liveness: float
+    valence: float
+    tempo: float
+    duration_ms: int
+    time_signature: int
+
+    metodo_lol()
+}
+
+
+class Playlist {
+    uri: str
+    name: str
+    description: str
+    query: str
+    author: str
+    n_tracks: int
+    playlist_followers: int
+
+}
+
+class Prediccion {
+    <<Abstract>>
+    +entrenarModelo()
+    +predecirPopularidad()
+    +evaluarModelo()
+}
+
+class Graficas {
+    <<Abstract>>
+    +generarGrafica()
+    +mostrarResultados()
+}
+
+Cancion o-- "*" Artista : es interpretada por
+Playlist o-- "*" Cancion : contiene
+
+Artista "*" -- "*" Playlist : aparece en
+
+Prediccion ..> Cancion : predice sobre
+Graficas ..> Cancion : visualiza
