@@ -1,3 +1,8 @@
+![Data Science](https://img.shields.io/badge/Data%20Science-Project-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Classification-orange)
+![Spotify](https://img.shields.io/badge/Dataset-Spotify-green)
+![XGBoost](https://img.shields.io/badge/Model-XGBoost-brightgreen)
+![Gradio](https://img.shields.io/badge/UI-Gradio-red)
 # Predicción de Popularidad musical en Spotify mediante un análisis de su información y Machine Learning
 
 ## Descripción general
