@@ -12,7 +12,7 @@ Este proyecto analiza datos obtenidos de la plataforma Spotify, analiza sus comp
 ## Tabla de contenidos
 1. [Resultados destacados](#resultados-destacados)
 2. [Objetivos](#objetivos)
-3. [Tecnologías utilizadas](#tecnologias-utilizadas)
+3. [Tecnologías utilizadas](#tecnologías-utilizadas)
 4. [Instalación y configuración](#instalación-y-configuración)
 5. [Arquitectura](#arquitectura)
 6. [Dataset](#dataset)
