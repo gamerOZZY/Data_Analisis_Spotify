@@ -3,127 +3,123 @@
 ![Spotify](https://img.shields.io/badge/Dataset-Spotify-green)
 ![XGBoost](https://img.shields.io/badge/Model-XGBoost-brightgreen)
 ![Gradio](https://img.shields.io/badge/UI-Gradio-red)
-# Predicción de Popularidad musical en Spotify mediante un análisis de su información y Machine Learning
+# Music Popularity Prediction on Spotify Through Analysis of Its Data and Machine Learning
 
-## Descripción general
-Este proyecto analiza datos obtenidos de la plataforma Spotify, analiza sus comportamientos y entiende patrones en ellos con el fin de poder aplicar un algoritmo de Machine Learning el cual pueda predecir si una canción podrá alcanzar el éxito mediático o no, basado únicamente en el entendimiento de sus características musicales, información de sus compositores y métricas adicionales de Spotify
+## Overview
+This project analyzes data obtained from the Spotify platform, examines its behavior, and identifies patterns within it in order to apply a Machine Learning algorithm that can predict whether a song is likely to achieve mainstream success or not, based solely on an understanding of its musical characteristics, information about its composers, and additional Spotify metrics.
 
-
-## Tabla de contenidos
-1. [Resultados destacados](#resultados-destacados)
-2. [Objetivos](#objetivos)
-3. [Tecnologías utilizadas](#tecnologías-utilizadas)
-4. [Instalación y configuración](#instalación-y-configuración)
-5. [Arquitectura](#arquitectura)
+## Table of Contents
+1. [Key Highlights](#key-highlights)
+2. [Objectives](#objectives)
+3. [Technologies Used](#technologies-used)
+4. [Installation and Setup](#installation-and-setup)
+5. [Architecture](#architecture)
 6. [Dataset](#dataset)
-7. [Metodología](#metodolog%C3%ADa)
-8. [Primeros resultados](#primeros-resultados)
-9. [Resultados finales y conclusiones](#resultados-finales-y-conclusiones)
-10. [Implementación de interfaz del modelo](#implementaci%C3%B3n-de-interfaz-del-modelo)
-11. [Estructura del repositorio](#estructura-del-repositorio)
-12. [Autores](#autores)
+7. [Methodology](#methodology)
+8. [Initial Results](#initial-results)
+9. [Final Results and Conclusions](#final-results-and-conclusions)
+10. [Model Interface Implementation](#model-interface-implementation)
+11. [Repository Structure](#repository-structure)
+12. [Authors](#authors)
 
+## Key Highlights
 
-## Resultados destacados
+- Integrated dataset with more than 200,000 songs.
+- Final Accuracy: ~80%.
+- Final MCC: ~0.55.
+- Most important variables:
+  - Average artist popularity.
+  - Average followers.
+  - Playlist followers.
+- Interactive application developed with Gradio.
 
-- Dataset integrado con más de 200,000 canciones.
-- Accuracy final: ~80%.
-- MCC final: ~0.55.
-- Variables más importantes:
-  - Popularidad promedio de artistas.
-  - Seguidores promedio.
-  - Seguidores de playlists.
-- Aplicación interactiva desarrollada con Gradio.
+## Objectives
+1. Analyze the relationships that exist among the technical characteristics of songs.
 
-## Objetivos
-1. Analizar las relaciones existentes entre las características técnicas de las canciones.
+2. Identify patterns and musical trends present in the songs and artists within the dataset.
 
-2. Identificar patrones y tendencias musicales presentes en las canciones y artistas del conjunto de datos. 
+3. Determine which musical characteristics influence the popularity of a song.
 
-3. Determinar qué características musicales influyen en la popularidad de una canción.
+4. Analyze the relationship between artists and the performance of their songs.
 
-4. Analizar la relación entre los artistas y el desempeño de sus canciones.
+5. Build predictive models to estimate the popularity or potential success of a song based on its musical characteristics.
 
-5. Construir modelos predictivos para estimar la popularidad o éxito potencial de una canción a partir de sus características musicales.
+### Questions to Address
 
-### Preguntas a resolver
+#### Popularity
+* Is the popularity of a song related to its danceability level?
+* Do more energetic songs tend to be more popular?
+* Is there a combination of features that favors greater popularity?
+* Does the duration of a song influence its popularity?
+* Does popularity depend more on the artist or on the musical characteristics?
+* Which musical factors influence a song’s popularity the most?
+* Are there characteristic musical profiles among the most successful artists?
 
-#### Popularidad
-* ¿La popularidad de una canción está relacionada con su nivel de danceability?
-* ¿Las canciones más energéticas tienden a ser más populares?
-* ¿Existe una combinación de características que favorezca una mayor popularidad?
-* ¿La duración de una canción influye en su popularidad?
-* ¿La popularidad depende más del artista o de las características musicales?
-* ¿Qué factores musicales influyen más en la popularidad de una canción?
-* ¿Existen perfiles musicales característicos de los artistas más exitosos?
+#### Musical Characteristics
+* Are there natural groups of songs with similar characteristics?
+* Which characteristics show the strongest correlations?
+* Do songs with high danceability also tend to have high energy?
+* Is there a relationship between valence (emotional positivity) and popularity?
+* Which variables best explain the musical variability in the dataset?
+* Is it possible to identify genres or styles solely from acoustic characteristics?
 
-#### Características musicales
-* ¿Existen grupos naturales de canciones con características similares?
-* ¿Qué características presentan las correlaciones más fuertes?
-* ¿Las canciones con alta danceability también suelen tener alta energy?
-* ¿Existe relación entre valence (positividad emocional) y popularidad?
-* ¿Qué variables explican mejor la variabilidad musical del conjunto de datos?
-* ¿Es posible identificar géneros o estilos únicamente a partir de características acústicas?
+#### Artists
+* Do artists maintain a consistent musical style across their songs?
+* Are there artists that stand out clearly by certain musical characteristics?
+* Which artists show greater musical diversity?
+* Do popular artists produce songs with similar characteristics?
 
-#### Artistas
-* ¿Los artistas mantienen un estilo musical consistente entre sus canciones?
-* ¿Existen artistas que se distingan claramente por ciertas características musicales?
-* ¿Qué artistas presentan mayor diversidad musical?
-* ¿Los artistas populares producen canciones con características similares?
+#### Predictions
+* Is it possible to predict the popularity of a song using only its musical characteristics?
+* Which variables are most important in the predictive model?
+* Which algorithm offers the best performance for estimating popularity?
+* Can a song be classified as a “success” or “failure” using machine learning?
+* Can a Machine Learning model predict the commercial success of a song before its release?
 
-#### Predicciones
-* ¿Es posible predecir la popularidad de una canción usando únicamente sus características musicales?
-* ¿Qué variables tienen mayor importancia en el modelo predictivo?
-* ¿Qué algoritmo ofrece mejor desempeño para estimar la popularidad?
-* ¿Se puede clasificar una canción como "éxito" o "no éxito" utilizando aprendizaje automático?
-* ¿Puede un modelo de Machine Learning predecir el éxito comercial de una canción antes de su lanzamiento?
+## Technologies Used
 
-## Tecnologías utilizadas
+The project was developed using tools focused on data analysis, machine learning, and interactive application development.
 
-El desarrollo del proyecto se realizó utilizando herramientas orientadas al análisis de datos, aprendizaje automático y desarrollo de aplicaciones interactivas.
+| Technology | Use within the project |
+| --- | --- |
+| Python 3.12 | Primary language for analysis, modeling, and application development. |
+| Pandas | Data cleaning, transformation, and manipulation. |
+| NumPy | Mathematical operations and numerical processing. |
+| Matplotlib | Data visualization and generation of exploratory charts. |
+| Seaborn | Visual statistical analysis and exploration of relationships between variables. |
+| Scikit-Learn | Implementation of Machine Learning algorithms and model evaluation. |
+| XGBoost | Development of models based on Gradient Boosting. |
+| UMAP | Dimensionality reduction and visualization of clusters present in the data. |
+| Gradio | Development of the graphical interface for making predictions. |
+| Joblib | Serialization and storage of trained models. |
+| Jupyter Notebook | Development of exploratory analysis and experimentation. |
+| Mermaid | Creation of architecture and workflow diagrams. |
+| Git and GitHub | Version control and repository management. |
 
-| Tecnología       | Uso dentro del proyecto                                                               |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| Python 3.12| Lenguaje principal para análisis, modelado y desarrollo de la aplicación.|
-| Pandas | Limpieza, transformación y manipulación de datos.|
-| NumPy | Operaciones matemáticas y procesamiento numérico.|
-| Matplotlib | Visualización de datos y generación de gráficos exploratorios.|
-| Seaborn | Análisis estadístico visual y exploración de relaciones entre variables.|
-| Scikit-Learn | Implementación de algoritmos de Machine Learning y evaluación de modelos.|
-| XGBoost | Desarrollo de modelos basados en Gradient Boosting.|
-| UMAP| Reducción de dimensionalidad y visualización de agrupamientos presentes en los datos.|
-| Gradio | Construcción de la interfaz gráfica para realizar predicciones.|
-| Joblib | Serialización y almacenamiento de modelos entrenados.|
-| Jupyter Notebook | Desarrollo de análisis exploratorios y experimentación.|
-| Mermaid | Elaboración de diagramas de arquitectura y flujo de trabajo.|
-| Git y GitHub | Control de versiones y gestión del repositorio.|
-|||
+## Installation and Setup
 
+### Prerequisites
 
-## Instalación y configuración
+Before running the project, it is necessary to have:
 
-### Requisitos previos
+* Python 3.12 or higher.
+* Git installed.
+* Access to a terminal or command prompt.
 
-Antes de ejecutar el proyecto es necesario contar con:
-
-* Python 3.12 o superior.
-* Git instalado.
-* Acceso a una terminal o consola de comandos.
-
-### 1. Clonar el repositorio
+### 1. Clone the repository
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone <REPOSITORY_URL>
 cd Data_Analisis_Spotify
 ```
 
-### 2. Crear un entorno virtual 
+### 2. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activar el entorno virtual:
+Activate the virtual environment:
 
 **Windows**
 
@@ -137,72 +133,70 @@ Activar el entorno virtual:
 source .venv/bin/activate
 ```
 
-### 3. Instalar dependencias
+### 3. Install dependencies
 
-Instalar todas las bibliotecas necesarias mediante:
+Install all required libraries using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Preparar los datasets
+### 4. Prepare the datasets
 
-Dentro de la carpeta `Dataset/` se encuentran los archivos comprimidos utilizados por el proyecto.
+The compressed files used by the project are located in the Dataset/ folder.
 
-Es necesario descomprimir los siguientes archivos:
+It is necessary to extract the following files:
 
 * [artists.csv.zip](Data_Analisis_Spotify\Dataset\artists.csv.zip)
 * [final_playlists.csv.zip](Data_Analisis_Spotify\Dataset\final_playlists.rar)
 * [final_tracks.csv.zip](Data_Analisis_Spotify\Dataset\final_tracks.csv.zip)
 * [main_dataset.csv.zip](Data_Analisis_Spotify\Dataset\main_dataset.csv.zip)
 
-Una vez extraídos, los archivos `.csv` deben permanecer dentro de la carpeta `Dataset/`.
+Once extracted, the .csv files must remain inside the Dataset/ folder.
 
-### 5. Ejecutar los análisis
+### 5. Run the analyses
 
-Los notebooks utilizados para el análisis exploratorio y el entrenamiento de modelos se encuentran en la carpeta:
+The notebooks used for exploratory analysis and model training are located in the folder:
 
 ```text
 Analisis/
 ```
 
-Cada notebook puede ejecutarse de forma independiente mediante Jupyter Notebook o Visual Studio Code.
+Each notebook can be run independently using Jupyter Notebook or Visual Studio Code.
 
-### 6. Ejecutar la aplicación de predicción
+### 6. Run the prediction application
 
-Acceder a la carpeta de la aplicación:
+Access the application folder:
 
 ```bash
 cd aplicacion_de_prediccion
 ```
 
-Ejecutar:
+Run:
 
 ```bash
 python app.py
 ```
 
-Al iniciarse correctamente, Gradio generará una dirección local similar a:
+If it starts correctly, Gradio will generate a local address similar to:
 
 ```text
 http://127.0.0.1:7860
 ```
 
-Abrir dicha dirección en un navegador web para utilizar la interfaz gráfica de predicción.
+Open that address in a web browser to use the graphical prediction interface.
 
-### 7. Uso de la aplicación
+### 7. Using the application
 
-1. Introducir la información de la canción.
-2. Registrar los artistas asociados.
-3. Registrar las playlists relacionadas.
-4. Presionar el botón **Predecir**.
-5. Consultar el resultado generado por el modelo.
+1. Enter the song information.
+2. Register the associated artists.
+3. Register the related playlists.
+4. Press the **Predict** button.
+5. Review the result generated by the model.
 
-Para realizar una nueva predicción, utilizar el botón **Limpiar todos los datos**.
+To make a new prediction, use the **Clear all data** button.
 
-
-
-## Arquitectura
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -210,205 +204,199 @@ flowchart LR
 A[Kaggle datasets] --> B[Merge datasets]
 B --> C[EDA]
 C --> D[Feature engineering]
-D --> E[Entrenamiento de modelos]
-E --> F[Modelo final]
-F --> G[Interfaz Gradio]
+D --> E[Model training]
+E --> F[Final model]
+F --> G[Gradio interface]
 ```
 
 ## Dataset
-El conjunto de datos utilizado en este proyecto fue construido a partir de múltiples fuentes públicas disponibles en Kaggle que contienen información extraída originalmente de Spotify. Debido a cambios recientes en las políticas de acceso de la plataforma, no fue posible realizar una recolección directa y masiva mediante la API oficial, por lo que se optó por integrar diversos datasets previamente recopilados por la comunidad.
+The dataset used in this project was built from multiple public sources available on Kaggle that contain information originally extracted from Spotify. Due to recent changes in the platform’s access policies, it was not possible to collect data directly and at scale through the official API, so the team chose to integrate various datasets previously compiled by the community.
 
-Los datos fueron consolidados mediante un proceso de integración basado en los identificadores únicos (URI) de canciones, artistas y playlists. Como resultado, se obtuvo un conjunto de datos enriquecido que combina características musicales, métricas de popularidad, información de artistas y datos relacionados con playlists.
+The data were consolidated through an integration process based on the unique identifiers (URIs) of songs, artists, and playlists. As a result, an enriched dataset was obtained that combines musical characteristics, popularity metrics, artist information, and data related to playlists.
 
-Esta integración permitió construir una visión más completa del ecosistema musical y proporcionó la base necesaria para el análisis exploratorio y el desarrollo de modelos predictivos orientados a estimar el éxito potencial de una canción.
+This integration made it possible to build a more complete view of the music ecosystem and provided the foundation needed for exploratory analysis and the development of predictive models aimed at estimating the potential success of a song.
 
+### Songs
+Songs are the main subject of this analysis; their attributes are as follows:
 
-### Canciones
-Las canciones son la principal fuente de estudio de este análisis, sus atributos son los siguientes:
+| Attribute | Meaning | Calculation |
+| :---: | :--- | :--- |
+| **track_uri** | It is the unique identifier for each song on Spotify; it is its ID. | |
+| **name** | It is the name of the song. | |
+| **artists_names** | It is a LIST of the names of the artists involved in creating or performing the song. | |
+| **popularity** | It is the current popularity of the song. | It is a number obtained by calculating the number of recent plays relative to the total historical number of plays. |
+| **album_type** | It is the type of release of the song (album, single, etc.). | |
+| **is_playable** | Because Spotify may restrict the playback of certain songs, this is a boolean variable that tells us whether the song can still be played. | |
+| **release_date** | It is the release date of the song. | |
+| **artists_uris** | It is a LIST containing the unique identifier of each artist. | |
+| **playlists_uris** | It is a LIST containing the unique identifier of some playlists in which the song appears. | |
+| **danceability** | It is a normalized value from 0 to 1 that represents how danceable a song is. | Through an algorithm that compares tempo (BPM), rhythmic stability, beat strength, and regularity. |
+| **energy** | It is a normalized value from 0 to 1 that represents the intensity or energy of a song. | Energy on Spotify is calculated by analyzing the audio signal of a song and measuring its volume, speed, rhythm, and noise to assign it an intensity value. |
+| **key** | It is a categorical value that tells us the tonic key of a song. | It is analyzed through the audio signal of a song and the volume, speed, rhythm, and noise are measured to assign an intensity value. |
+| **loudness** | It is the perceived loudness of a song, measured in decibels (dB), which determines how strong or soft the audio sounds to the human ear compared with other tracks. | By averaging the volume of the entire song under the international LUFS standard, which applies frequency filters that mimic the sensitivity of the human ear to analyze the actual acoustic power. |
+| **mode** | It is the mode of the key, major or minor. | It is calculated using artificial intelligence algorithms that analyze the frequency relationships and predominant chords of the track to assign a binary value: 1 for major mode and 0 for minor mode. |
+| **speechiness** | It is the metric that measures the presence of spoken words in a track, distinguishing between purely spoken content and sung music. | |
+| **Acousticness** | It is the confidence measure that determines the probability that a song was created exclusively with acoustic instruments, without amplification or electronic effects. | It is calculated using machine learning algorithms that analyze timbre, frequency purity, and the absence of digital distortion in the track, assigning a score of 1.0 for high acoustic probability and 0.0 for purely electronic or heavily processed music. |
+| **Instrumentalness** | It is the metric that predicts the probability that a song contains no human voices. | It is calculated using artificial intelligence algorithms that analyze the track for phonemes, words, or structured singing, assigning a score where values above 0.5 indicate instrumental music and songs with conventional lyrics approach 0.0. |
+| **Liveness** | It is a metric that detects the presence of an audience or crowd in the recording, determining whether the song was recorded live or in a studio. | It is calculated using artificial intelligence algorithms that look for specific environmental sounds such as applause, cheers, echoes from large venues, or background noise, assigning a value above 0.8 for a live track and below 0.5 for a studio session. |
+| **Valence** | It is the metric that describes the musical positivity conveyed by a song, measuring whether the mood of the track is happy or sad. | It is calculated using artificial intelligence algorithms that analyze tonal color, rhythm, and harmonic structure, assigning a value between 0.0 (sad, depressed, or angry songs) and 1.0 (happy, cheerful, or euphoric songs). |
+| **Tempo** | BPM. | |
+| **duration_ms** | Duration of the song in milliseconds. | |
+| **time_signature** | It describes how many notes there are per measure. | |
+| **Artist_popularities** | It is an internal and relative metric, expressed on a scale of 0 to 100, that measures the relevance and current traction of a musician on the platform compared with all others. | It is calculated mathematically and automatically from the cumulative popularity of all the artist’s songs, using an algorithm that strongly weights the volume of recent plays (from the last 28 to 30 days) and the level of user interaction, such as saves to libraries or additions to playlists. |
+| **Artist_genres** | They are the labels or classifications directly associated with a musician’s profile, used to group them within musical styles, subgenres, and micro-communities. | They are calculated using artificial intelligence algorithms that analyze distributor metadata, user behavior (when listeners group the artist with others similar in their playlists), and the sound of their songs through digital signal processing. |
+| **Artist_followers** | Number of followers each artist involved in the song has. | |
 
-| Atributo | Significado | Cálculo |
-| :---: | :--- | :--- |  
-|**track_uri** | Es el identificador único que tiene cada canción en Spotify, es su ID ||
-|**name**|Es el nombre de las canciones||
-|**artists_names**|Es una LISTA de los nombres de los artistas involucrados en la creación o interpretación de la canción||
-|**popularity**|Es la popularidad actual de la canción.  | Es un número obtenido mediante el cálculo del número reciente de reproducciones sobre el total histórico de reproducciones|
-|**album_type**|Es el tipo de lanzamiento de la canción (álbum, single, etc)||
-|**is_playable**|Debido a que Spotify puede prohibir la reproducción de algunas canciones, es una variable booleana la cual nos dice si la canción aún se puede reproducir|
-|**release_date**| Es la fecha de lanzamiento de la canción||
-|**artists_uris**|Es una LISTA que contiene el identificador único de cada artista||
-|**playlists_uris**| Es una LISTA que contiene el identificador único de algunas playlists en las que se encuentra la canción||
-|**danceability**| Es un valor normalizado (de 0 a 1) el cual representa qué tan bailable es una canción.| Mediante un algoritmo el cual compara el tempo (BPM), estabilidad rítmica, fuerza del compás, regularidad|
-|**energy**|Es un valor normalizado (0 a 1), representa la intensidad o la energía que tiene una canción |La energía en Spotify se calcula analizando la señal de audio de una canción y midiendo su volumen, velocidad, ritmo y ruido para asignarle un valor de intensidad|
-|**key**|Es un valor categórico el cual nos dice en qué tonalidad se encuentra una canción | Se analiza la señal de audio de una canción y midiendo su volumen, velocidad, ritmo y ruido para asignarle un valor de intensidad|
-|**loudness**|Es la sonoridad percibida de una canción, medida en decibelios (dB), que determina qué tan fuerte o suave suena el audio para el oído humano en comparación con otras pistas. | Promediando el volumen de toda la canción bajo el estándar internacional LUFS, el cual aplica filtros de frecuencia que imitan la sensibilidad del oído humano para analizar la potencia acústica real.|
-|**mode**|Es el modo de la tonalidad, mayor o menor. | Se calcula mediante algoritmos de inteligencia artificial que analizan las relaciones de frecuencia y los acordes predominantes de la pista para asignar un valor binario: 1 para el modo mayor y 0 para el modo menor.|
-|**speechiness**|Es la métrica que mide la presencia de palabras habladas en una pista, diferenciando entre contenido puramente hablado y música cantada. ||
-|**Acousticness**|Es la medida de confianza que determina la probabilidad de que una canción haya sido creada exclusivamente con instrumentos acústicos, sin amplificación ni efectos electrónicos. | Se calcula mediante algoritmos de aprendizaje automático que analizan el timbre, la pureza de las frecuencias y la ausencia de distorsión digital en la pista, asignando una puntuación de 1.0 para alta probabilidad acústica y 0.0 para música puramente electrónica o muy procesada.|
-|**Instrumentalness**|Es la métrica que predice la probabilidad de que una canción no contenga voces humanas|Se calcula mediante algoritmos de inteligencia artificial que analizan la pista en busca de fonemas, palabras o canto estructurado, asignando una puntuación donde los valores superiores a 0.5 indican música instrumental y las canciones con letras convencionales se acercan a 0.0.|
-|**Liveness**|Es una métrica que detecta la presencia de una audiencia o público en la grabación, determinando si la canción se grabó en vivo o en un estudio.|Se calcula mediante algoritmos de inteligencia artificial que buscan sonidos ambientales específicos como aplausos, ovaciones, ecos de grandes recintos o ruido de fondo, asignando un valor superior a 0.8 si es una pista en directo y menor a 0.5 si es una sesión de estudio.|
-|**Valence**|Es la métrica que describe la positividad musical que transmite una canción, midiendo si el estado de ánimo de la pista es alegre o triste|Se calcula mediante algoritmos de inteligencia artificial que analizan el color tonal, el ritmo y la estructura armónica, asignando un valor entre 0.0 (canciones tristes, deprimidas o enojadas) y 1.0 (canciones felices, alegres o eufóricas).|
-|**Tempo**|BPM||
-|**duration_ms**|Duración de la canción en milisegundos.||
-|**time_signature**|Describe cuántas notas hay por compás.||
-|**Artist_popularities**|Es una métrica interna y relativa, expresada en una escala de 0 a 100, que mide la relevancia y el nivel de tracción actual de un músico en la plataforma en comparación con todos los demás|Se calcula de forma matemática y automática a partir de la popularidad acumulada de todas las canciones del artista, utilizando un algoritmo que pondera fuertemente el volumen de reproducciones recientes (de los últimos 28 a 30 días) y el nivel de interacción del usuario, como guardados en la biblioteca o adiciones a playlists|
-|**Artist_genres**|Son las etiquetas o clasificaciones musicales asociadas directamente al perfil de un músico, las cuales sirven para agruparlo dentro de estilos, subgéneros y microcomunidades musicales específicas.|Se calcula mediante algoritmos de inteligencia artificial que analizan los metadatos de las distribuidoras, el comportamiento de los usuarios (siempre que los oyentes agrupen al artista con otros similares en sus playlists) y el análisis del sonido de sus canciones mediante el procesamiento de señales digitales.|
-|**Artist_followers**|Cantidad de seguidores que tiene cada artista que participa en la canción.||
+### Artist
 
-### Artista
-
-|Atributo|Significado|Cálculo|
-| :---: | :--- | :--- | 
-|**artist_uri**|Es el identificador único que tiene cada artista en Spotify, es su ID||
-|**artist_popularity**|Es una métrica interna y relativa, expresada en una escala de 0 a 100, que mide la relevancia y el nivel de tracción actual de un músico en la plataforma en comparación con todos los demás|Se calcula de forma matemática y automática a partir de la popularidad acumulada de todas las canciones del artista, utilizando un algoritmo que pondera fuertemente el volumen de reproducciones recientes (de los últimos 28 a 30 días) y el nivel de interacción del usuario, como guardados en la biblioteca o adiciones a playlists|
-|**Artist_genres**|Son las etiquetas o clasificaciones musicales asociadas directamente al perfil de un músico, las cuales sirven para agruparlo dentro de estilos, subgéneros y microcomunidades musicales específicas.|Se calcula mediante algoritmos de inteligencia artificial que analizan los metadatos de las distribuidoras, el comportamiento de los usuarios (siempre que los oyentes agrupen al artista con otros similares en sus playlists) y el análisis del sonido de sus canciones mediante el procesamiento de señales digitales.|
-|**Artist_followers**|Cantidad de seguidores que tiene cada artista que participa en la canción.||
+| Attribute | Meaning | Calculation |
+| :---: | :--- | :--- |
+| **artist_uri** | It is the unique identifier for each artist on Spotify; it is their ID. | |
+| **artist_popularity** | It is an internal and relative metric, expressed on a scale of 0 to 100, that measures the relevance and current traction of a musician on the platform compared with all others. | It is calculated mathematically and automatically from the cumulative popularity of all the artist’s songs, using an algorithm that strongly weights the volume of recent plays (from the last 28 to 30 days) and the level of user interaction, such as saves to libraries or additions to playlists. |
+| **Artist_genres** | They are the labels or classifications directly associated with a musician’s profile, used to group them within musical styles, subgenres, and micro-communities. | They are calculated using artificial intelligence algorithms that analyze distributor metadata, user behavior (when listeners group the artist with others similar in their playlists), and the sound of their songs through digital signal processing. |
+| **Artist_followers** | Number of followers each artist involved in the song has. | |
 
 ### Playlist
 
-|Atributo|Significado|
+| Attribute | Meaning |
 | :---: | :--- |
-|**uri**|Es el identificador único que tiene cada playlist en Spotify, es su ID|
-|**name**|Nombre de la playlist|
-|**description**|Descripción de la playlist|
-|**query**||
-|**author**|Autor de la playlist|
-|**n_tracks**|Número de canciones en la playlist, solo se toman en cuenta las primeras 100 canciones|
-|**playlist_followers**|Número de seguidores que tiene cada playlist|
+| **uri** | It is the unique identifier for each playlist on Spotify; it is its ID. |
+| **name** | Name of the playlist. |
+| **description** | Description of the playlist. |
+| **query** | |
+| **author** | Author of the playlist. |
+| **n_tracks** | Number of songs in the playlist; only the first 100 songs are counted. |
+| **playlist_followers** | Number of followers each playlist has. |
 
-El merge de los datasets se realizó mediante la utilización de los *uris*, ya que como son identificadores únicos, se pueden encontrar los registros con ellos
+The merge of the datasets was carried out using the URIs, since they are unique identifiers and can therefore be used to locate matching records.
 
+## Methodology
 
-## Metodología
+The methodology followed during the development of the project was divided into four main stages: exploratory analysis, feature engineering, predictive modeling, and application implementation.
 
-La metodología seguida durante el desarrollo del proyecto se dividió en cuatro etapas principales: análisis exploratorio, ingeniería de características, modelado predictivo e implementación de la aplicación.
+### 1. Exploratory Data Analysis (EDA)
 
-### 1. Análisis Exploratorio de Datos (EDA)
+The first stage consisted of understanding the structure of the dataset, identifying relevant patterns, and detecting possible information quality issues. To facilitate the analysis, the study was divided into three main areas:
 
-La primera etapa consistió en comprender la estructura del conjunto de datos, identificar patrones relevantes y detectar posibles problemas de calidad de información. Para facilitar el análisis, el estudio se dividió en tres áreas principales:
+* Artist analysis.
+* Musical characteristics analysis.
+* Popularity analysis of songs, artists, and playlists.
 
-* Análisis de artistas.
-* Análisis de características musicales.
-* Análisis de popularidad de canciones, artistas y playlists.
+During this phase, statistical analyses, visualizations, and correlation studies were conducted with the goal of identifying variables potentially relevant to predicting musical success.
 
-Durante esta fase se realizaron análisis estadísticos, visualizaciones y estudios de correlación con el objetivo de identificar variables potencialmente relevantes para la predicción del éxito musical.
+### 2. Feature Engineering
 
-### 2. Ingeniería de Características
+Once the behavior of the data was understood, several transformations were applied to improve the predictive capacity of the models.
 
-Una vez comprendido el comportamiento de los datos, se aplicaron diversas transformaciones destinadas a mejorar la capacidad predictiva de los modelos.
+Among the main transformations carried out were:
 
-Entre las principales transformaciones realizadas se encuentran:
+* Discretization of probabilistic variables.
+* Encoding of categorical variables.
+* Standardization of numerical variables.
+* Construction of new features derived from artists and playlists.
+* Removal of observations that were not very representative in order to reduce noise in the dataset.
 
-* Discretización de variables probabilísticas.
-* Codificación de variables categóricas.
-* Estandarización de variables numéricas.
-* Construcción de nuevas características derivadas de artistas y playlists.
-* Eliminación de observaciones poco representativas para reducir ruido en el conjunto de datos.
+These transformations made it possible to obtain a set of variables better suited to machine learning algorithms.
 
-Estas transformaciones permitieron obtener un conjunto de variables más adecuado para los algoritmos de aprendizaje automático.
+### 3. Model Development and Evaluation
 
-### 3. Desarrollo y Evaluación de Modelos
+Subsequently, several classification models were trained with the goal of determining whether a song could be categorized as a success or a failure.
 
-Posteriormente se entrenaron diversos modelos de clasificación con el objetivo de determinar si una canción podía ser catalogada como éxito o fracaso.
+The algorithms evaluated were:
 
-Los algoritmos evaluados fueron:
-
-* Regresión Logística.
+* Logistic Regression.
 * Random Forest.
 * XGBoost.
 
-Cada modelo fue sometido a diferentes procesos de ajuste de hiperparámetros y evaluado mediante Accuracy y Matthews Correlation Coefficient (MCC), prestando especial atención a esta última métrica debido al desbalance existente entre clases.
+Each model was subjected to different hyperparameter tuning processes and evaluated using Accuracy and Matthews Correlation Coefficient (MCC), with special attention paid to the latter metric due to the class imbalance present in the data.
 
-### 4. Implementación de la Aplicación
+### 4. Application Implementation
 
-Finalmente el modelo seleccionado fue integrado dentro de una aplicación interactiva desarrollada utilizando Programación Orientada a Objetos y la biblioteca Gradio.
+Finally, the selected model was integrated into an interactive application developed using Object-Oriented Programming and the Gradio library.
 
-Esta implementación permite capturar información relacionada con canciones, artistas y playlists para generar predicciones en tiempo real mediante una interfaz gráfica intuitiva.
+This implementation allows information related to songs, artists, and playlists to be captured in order to generate predictions in real time through an intuitive graphical interface.
 
+## Initial Results
 
-## Primeros resultados
+Several experiments were conducted for the three predictive models through hyperparameter tuning. After multiple tests, the configurations that offered the best performance within the analyzed scenarios were selected.
 
-Para los tres modelos predictivos evaluados se realizaron múltiples experimentos mediante el ajuste de hiperparámetros. Tras diversas pruebas, se seleccionaron las configuraciones que ofrecieron el mejor desempeño dentro de los escenarios analizados.
+The evaluation of the models was carried out using two main metrics: Accuracy Score and Matthews Correlation Coefficient (MCC). Accuracy measures the proportion of correct predictions made by the model, taking values between 0 and 1. In contrast, MCC considers the four possible outcomes of a confusion matrix (true positives, true negatives, false positives, and false negatives), producing values between -1 and 1, where -1 represents a completely incorrect classification, 0 indicates performance equivalent to random chance, and 1 corresponds to a perfect classification.
 
-La evaluación de los modelos se llevó a cabo mediante dos métricas principales: Accuracy Score y Matthews Correlation Coefficient (MCC). El Accuracy mide la proporción de predicciones correctas realizadas por el modelo, tomando valores entre 0 y 1. Por su parte, el MCC considera los cuatro posibles resultados de una matriz de confusión (verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos), generando valores entre -1 y 1, donde -1 representa una clasificación completamente incorrecta, 0 indica un comportamiento equivalente al azar y 1 corresponde a una clasificación perfecta.
+Although Accuracy provides a general measure of the percentage of correct predictions, MCC was considered especially relevant due to the imbalance present in the classes of the dataset. In this way, it is possible to determine whether the model truly learned useful patterns or simply favored the majority class, obtaining an apparently high Accuracy without real predictive capacity.
 
-Aunque el Accuracy proporciona una medida general del porcentaje de aciertos, se consideró especialmente relevante el MCC debido al desbalance presente en las clases del conjunto de datos. De esta forma, es posible determinar si el modelo realmente aprendió patrones útiles o si simplemente favorece la clase mayoritaria, obteniendo un Accuracy aparentemente elevado sin una capacidad predictiva real.
+* Logistic Regression
 
-* Regresión Logística
-
-    * La regresión logística obtuvo un Accuracy de 0.57, lo que indica que aproximadamente el 57 % de las muestras del conjunto de prueba fueron clasificadas correctamente. Sin embargo, esto también implica que una proporción considerable de observaciones fue clasificada de forma incorrecta. Su valor de MCC fue cercano a 0.19, lo que sugiere que el modelo logró capturar ciertos patrones en los datos, aunque su capacidad predictiva sigue siendo limitada.
+    * Logistic regression obtained an Accuracy of 0.57, which indicates that approximately 57% of the samples in the test set were classified correctly. However, this also implies that a considerable proportion of observations were classified incorrectly. Its MCC value was close to 0.19, suggesting that the model managed to capture certain patterns in the data, although its predictive capacity remains limited.
 
 * Random Forest
 
-    * El modelo Random Forest presentó un desempeño superior al de la regresión logística, alcanzando un Accuracy de 0.68. Esto significa que más de dos terceras partes de las muestras fueron clasificadas correctamente. No obstante, su MCC fue de aproximadamente 0.20, valor que indica una mejora modesta respecto al modelo anterior y evidencia que aún existen dificultades para distinguir adecuadamente entre las clases.
+    * The Random Forest model showed better performance than logistic regression, reaching an Accuracy of 0.68. This means that more than two-thirds of the samples were classified correctly. However, its MCC was approximately 0.20, a value that indicates only a modest improvement over the previous model and shows that there are still difficulties in distinguishing effectively between classes.
 
-    * El análisis de importancia de variables mostró que loudness, duration_ms y energy fueron las características con mayor influencia en las predicciones. Este resultado sugiere que dichas variables contienen información relevante para diferenciar entre canciones exitosas y no exitosas dentro del conjunto de datos analizado.
+    * Variable importance analysis showed that loudness, duration_ms, and energy were the characteristics with the greatest influence on the predictions. This result suggests that these variables contain relevant information for distinguishing between successful and unsuccessful songs within the analyzed dataset.
 
 * XGBoost
 
-    * El modelo XGBoost obtuvo resultados prácticamente idénticos a los de Random Forest, tanto en Accuracy como en MCC. Aunque ambos algoritmos se basan en árboles de decisión, difieren en la forma en que construyen y combinan sus modelos, por lo que resulta interesante que hayan alcanzado desempeños tan similares.
+    * The XGBoost model obtained results that were practically identical to those of Random Forest, both in Accuracy and MCC. Although both algorithms are based on decision trees, they differ in the way they build and combine their models, so it is interesting that they achieved such similar performance.
 
-    * En cuanto a la importancia de variables, XGBoost identificó a album_type como la característica más relevante. A partir de este hallazgo, se analizó la proporción de clasificaciones correctas para cada categoría de esta variable. Se observó que la categoría compilation presentó la mayor tasa de aciertos, con aproximadamente un 75 % de canciones clasificadas correctamente.
+    * Regarding variable importance, XGBoost identified album_type as the most relevant feature. Based on this finding, the proportion of correct classifications for each category of this variable was analyzed. The compilation category showed the highest correct-classification rate, with approximately 75% of songs classified correctly.
 
-    * Este resultado podría indicar una relación entre la aparición de una canción en un álbum de tipo compilación y su nivel de éxito. Una posible explicación es que las canciones incluidas en compilaciones suelen haber alcanzado previamente cierta popularidad o reconocimiento comercial, lo que las convierte en candidatas para ser relanzadas dentro de este tipo de producciones.
+    * This result could indicate a relationship between the appearance of a song on a compilation album and its level of success. One possible explanation is that songs included in compilations often had previously achieved some popularity or commercial recognition, making them candidates to be re-released within this type of production.
 
-Por lo tanto, se puede concluir que las características musicales poseen cierta capacidad para predecir el éxito de una canción; sin embargo, dicha capacidad es limitada y moderada. Los resultados obtenidos sugieren que estas variables, por sí solas, no son suficientes para explicar completamente el éxito comercial de una pieza musical.
+Therefore, it can be concluded that musical characteristics do have some ability to predict the success of a song; however, that ability is limited and moderate. The results suggest that these variables alone are not sufficient to fully explain the commercial success of a musical piece.
 
-Esta situación puede atribuirse a diversos factores externos que no fueron considerados en el conjunto de datos. Entre ellos destacan la influencia de las redes sociales, las campañas de marketing, la popularidad previa de los artistas, las recomendaciones de las plataformas de streaming y los fenómenos virales que se generan en medios digitales.
+This situation can be attributed to several external factors not considered in the dataset. Among them are the influence of social media, marketing campaigns, the prior popularity of artists, recommendations from streaming platforms, and viral phenomena generated in digital media.
 
-En la actualidad, plataformas como TikTok, Instagram Reels y YouTube Shorts tienen la capacidad de impulsar significativamente la popularidad de una canción en periodos muy cortos de tiempo. Como consecuencia, algunas canciones pueden alcanzar niveles elevados de éxito comercial debido a su difusión viral, independientemente de que sus características musicales sean similares a las de otras canciones con menor impacto. Esto sugiere que el éxito musical es un fenómeno complejo que depende tanto de factores musicales como de elementos sociales, culturales y tecnológicos.
+At present, platforms such as TikTok, Instagram Reels, and YouTube Shorts have the ability to significantly boost a song’s popularity over very short periods of time. As a consequence, some songs can reach high levels of commercial success due to viral diffusion, regardless of whether their musical characteristics are similar to those of other songs with lower impact. This suggests that musical success is a complex phenomenon that depends on both musical factors and social, cultural, and technological elements.
 
-Después de darnos cuenta que no se puede predecir el éxito de una canción meramente por los atributos musicales de la misma, se optará por tomar en cuenta datos ajenos a la pieza, como información de sus respectivos autores o playlists en las que se encuentran
+After realizing that it is not possible to predict the success of a song merely from its musical attributes, the decision was made to take into account data beyond the track itself, such as information about its respective artists or playlists in which it appears.
 
-Esta vez, se tomará información de playlists en las que se encuentra una canción e información de su respectivo artista
+This time, information from playlists in which a song appears and information about its respective artist will be used.
 
-## Resultados finales y conclusiones
+## Final Results and Conclusions
 
-Con este nuevo conjunto de características, fue posible predecir el éxito o fracaso de una canción con un mayor grado de confianza. Los modelos alcanzaron un Accuracy cercano al 80 % y un MCC de 0.55. Considerando que el conjunto de datos presenta un desbalance entre clases, estos resultados indican que los modelos lograron aprender patrones relevantes y no se limitaron a predecir la clase predominante.
+With this new set of features, it became possible to predict whether a song would be a success or a failure with a greater degree of confidence. The models reached an Accuracy close to 80% and an MCC of 0.55. Considering that the dataset presents class imbalance, these results indicate that the models were able to learn relevant patterns and did not limit themselves to predicting the majority class.
 
-A diferencia del análisis anterior, en esta ocasión se utilizaron principalmente características externas a las canciones, obteniendo un desempeño significativamente superior. Asimismo, tanto Random Forest como XGBoost mostraron resultados similares en cuanto a la importancia de las variables, lo que aporta consistencia a los hallazgos obtenidos.
+Unlike the previous analysis, this time mainly external characteristics of the songs were used, resulting in significantly better performance. Likewise, both Random Forest and XGBoost showed similar results in terms of variable importance, which adds consistency to the findings.
 
-Las variables con mayor influencia en las predicciones fueron la popularidad promedio de los artistas y el número promedio de seguidores de los mismos. Este resultado es coherente con la dinámica de la industria musical, ya que los artistas que cuentan con una base sólida de seguidores suelen tener una mayor visibilidad y alcance, lo que incrementa la probabilidad de que sus lanzamientos alcancen niveles elevados de popularidad.
+The variables with the greatest influence on the predictions were the average popularity of artists and the average number of followers they have. This result is consistent with the dynamics of the music industry, since artists who have a solid follower base tend to have greater visibility and reach, which increases the probability that their releases will reach high levels of popularity.
 
-De manera similar, se observó que la presencia de artistas poco conocidos junto a artistas consolidados puede incrementar considerablemente la probabilidad de éxito de una canción. Esto sugiere que la exposición proporcionada por artistas con una audiencia establecida puede tener un impacto significativo en la difusión y recepción de nuevos lanzamientos.
+Similarly, it was observed that the presence of lesser-known artists alongside established artists can significantly increase the probability of a song’s success. This suggests that the exposure provided by artists with an established audience can have a significant impact on the diffusion and reception of new releases.
 
-Por otra parte, el número promedio de canciones dentro de una playlist y la cantidad de seguidores de esta también mostraron una influencia importante en el modelo. Este hallazgo indica que la visibilidad proporcionada por playlists populares puede contribuir significativamente al éxito de una canción. En consecuencia, incluso artistas con poca presencia en la industria pueden beneficiarse de aparecer en listas de reproducción con una gran audiencia.
+On the other hand, the average number of songs in a playlist and the number of followers of that playlist also showed significant influence on the model. This finding indicates that the visibility provided by popular playlists can contribute significantly to a song’s success. As a result, even artists with little industry presence can benefit from appearing in playlists with a large audience.
 
-Adicionalmente, este modelo no solo puede interpretarse como un predictor del éxito musical, sino también como una aproximación a la capacidad de una canción para alcanzar una alta difusión en plataformas digitales. Sin embargo, establecer una relación directa con fenómenos virales en servicios como TikTok, Instagram Reels o YouTube Shorts requeriría incorporar variables adicionales relacionadas con la actividad y el alcance de dichas plataformas.
+Additionally, this model can be interpreted not only as a predictor of musical success, but also as an approximation of a song’s capacity to achieve high diffusion on digital platforms. However, establishing a direct relationship with viral phenomena on services such as TikTok, Instagram Reels, or YouTube Shorts would require incorporating additional variables related to activity and reach on those platforms.
 
-Los resultados obtenidos permiten concluir que las características externas asociadas a los artistas y a los mecanismos de difusión tienen una capacidad predictiva considerablemente superior a la de las características musicales analizadas previamente. En particular, la popularidad de los artistas, su base de seguidores y la exposición obtenida a través de playlists desempeñan un papel fundamental en la predicción del éxito de una canción. Por ello, puede afirmarse que los factores externos constituyen indicadores relevantes para estimar la probabilidad de éxito comercial de una producción musical.
+The results obtained allow us to conclude that the external characteristics associated with artists and with diffusion mechanisms have considerably greater predictive capacity than the musical characteristics analyzed previously. In particular, artist popularity, their follower base, and the exposure obtained through playlists play a fundamental role in predicting the success of a song. For this reason, it can be stated that external factors are relevant indicators for estimating the probability of commercial success of a musical production.
 
+## Model Interface Implementation
 
-## Implementación de interfaz del modelo
+With the goal of facilitating interaction with the predictive model, a web application was developed using the Gradio library. This tool allows the trained model to be consumed through an intuitive graphical interface, eliminating the need to execute code or interact directly with the analysis notebooks.
 
-Con el objetivo de facilitar la interacción con el modelo predictivo, se desarrolló una aplicación web utilizando la biblioteca Gradio. Esta herramienta permite consumir el modelo entrenado mediante una interfaz gráfica intuitiva, eliminando la necesidad de ejecutar código o interactuar directamente con los notebooks de análisis.
+The application implements an architecture based on Object-Oriented Programming, where the main domain entities (Song, Artist, and Playlist) are represented through independent classes. Subsequently, a specialized service transforms the information entered by the user into the set of features required by the Machine Learning model.
 
-La aplicación implementa una arquitectura basada en Programación Orientada a Objetos, donde las entidades principales del dominio (Canción, Artista y Playlist) son representadas mediante clases independientes. Posteriormente, un servicio especializado transforma la información ingresada por el usuario en el conjunto de características requerido por el modelo de Machine Learning.
-
-Una vez procesados los datos, el modelo genera una predicción indicando si la canción posee características asociadas al éxito o al fracaso dentro del contexto analizado.
+Once the data have been processed, the model generates a prediction indicating whether the song has characteristics associated with success or failure within the analyzed context.
 
 ```mermaid
 flowchart LR
 
-A[Usuario] --> B[Interfaz Gradio]
-B --> C[Objetos Cancion Artista Playlist]
+A[User] --> B[Gradio interface]
+B --> C[Song Artist Playlist objects]
 C --> D[Feature Engineering]
-D --> E[Modelo XGBoost]
-E --> F[Prediccion]
+D --> E[XGBoost model]
+E --> F[Prediction]
 ```
 
+![Application interface](resources/app_img.png)
 
-![Interfaz de la aplicación](resources/app_img.png)
+#### Example Inputs
 
-
-#### Ejemplos de entrada)
-
-| # | Canción | Detalles Canción | Artistas (Popularidad, Géneros, Seguidores) | Playlist (Nombre, Canciones, Seguidores) | Salida |
+| # | Song | Song Details | Artists (Popularity, Genres, Followers) | Playlist (Name, Songs, Followers) | Output |
 | :-: | :--- | :--- | :--- | :--- | :-: |
-| **1** | **Flowers** | • **Reproducible:** Sí<br>• **Tipo:** Single<br>• **Lanzamiento:** 2023-12-01 | • **Artista 1:** Pop. 92 \| pop \| 20250106 seg. | • **Nombre:** 100 Canciones más felices<br>• **Canciones:** 100<br>• **Seguidores:** 24586 | **Éxito** |
-| **2** | **PRC** | • **Reproducible:** Sí<br>• **Tipo:** Single<br>• **Lanzamiento:** 2024-06-20 | • **Artista 1:** Pop. 91 \| sad sierreno \| 1548818 seg.<br>• **Artista 2:** Pop. 87 \| corrido, corridos tumbados, mexa \| 6173797 seg. | • **Nombre:** Corridos 2022-2023<br>• **Canciones:** 174<br>• **Seguidores:** 19974 | **Éxito** |
-| **3** | **Death Blues** | • **Reproducible:** Sí<br>• **Tipo:** Álbum<br>• **Lanzamiento:** 2010-03-26 | • **Artista 1:** Pop. 29 \| dark cabaret, gothic \| 15,968 seg. | • **Nombre:** gothic songs<br>• **Canciones:** 13<br>• **Seguidores:** 223 | **Fracaso** |
+| **1** | **Flowers** | • **Playable:** Yes<br>• **Type:** Single<br>• **Release:** 2023-12-01 | • **Artist 1:** Pop. 92 \| pop \| 20250106 followers | • **Name:** 100 Happier Songs<br>• **Songs:** 100<br>• **Followers:** 24586 | **Success** |
+| **2** | **PRC** | • **Playable:** Yes<br>• **Type:** Single<br>• **Release:** 2024-06-20 | • **Artist 1:** Pop. 91 \| sad sierreno \| 1548818 followers<br>• **Artist 2:** Pop. 87 \| corrido, corridos tumbados, mexa \| 6173797 followers | • **Name:** Corridos 2022-2023<br>• **Songs:** 174<br>• **Followers:** 19974 | **Success** |
+| **3** | **Death Blues** | • **Playable:** Yes<br>• **Type:** Album<br>• **Release:** 2010-03-26 | • **Artist 1:** Pop. 29 \| dark cabaret, gothic \| 15,968 followers | • **Name:** gothic songs<br>• **Songs:** 13<br>• **Followers:** 223 | **Failure** |
 
-## Estructura del repositorio
+## Repository Structure
 
 ```text
 Data_Analisis_Spotify/
@@ -419,7 +407,7 @@ Data_Analisis_Spotify/
 │   ├── popularidad.ipynb
 │   └── predicciones.ipynb
 │
-├── aplicacion_de_pred/
+├── aplicacion_de_prediccion/
 │   ├── modelos/
 │   │   ├── __init__.py
 │   │   ├── artista.py
@@ -455,22 +443,21 @@ Data_Analisis_Spotify/
 └── README.md
 ```
 
-### Descripción de directorios
+### Directory Description
 
-| Carpeta | Descripción |
+| Folder | Description |
 |----------|------------|
-| `Analisis/` | Notebooks utilizados para análisis exploratorio, ingeniería de características y evaluación de modelos. |
-| `aplicacion_de_prediccion/modelos/` | Clases de dominio que representan artistas, canciones y playlists. |
-| `aplicacion_de_prediccion/servicios/` | Lógica de negocio para creación de características y generación de predicciones. |
-| `aplicacion_de_prediccion/ui/` | Componentes de la interfaz gráfica desarrollada con Gradio. |
-| `Dataset/` | Conjunto de datos obtenidos y procesados de Kaggle. |
-| `resources/` | Recursos de documentación, diagramas UML, imágenes y material de apoyo. |
+| Analisis/ | Notebooks used for exploratory analysis, feature engineering, and model evaluation. |
+| aplicacion_de_prediccion/modelos/ | Domain classes representing artists, songs, and playlists. |
+| aplicacion_de_prediccion/servicios/ | Business logic for feature creation and prediction generation. |
+| aplicacion_de_prediccion/ui/ | Graphical interface components developed with Gradio. |
+| Dataset/ | Dataset obtained and processed from Kaggle. |
+| resources/ | Documentation resources, UML diagrams, images, and supporting materials. |
 
-
-## Autores
+## Authors
 
 * Alarcón Ruiz Sergio Fernando
 * Ramírez Cortes Axel Osiris
 
-Estudiantes de Licenciatura en Ciencia de Datos
+Data Science Undergraduate Students
 ESCOM - Instituto Politécnico Nacional
